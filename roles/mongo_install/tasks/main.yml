@@ -1,0 +1,46 @@
+---
+- name: Add MongoDB public GPG Key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 4B7C549A058F8B6B
+
+- name: Add MongoDB 4.2 Repo
+  apt_repository:
+    repo: deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse
+    state: present
+    filename: mongodb-org-4.0
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+    force_apt_get: True
+
+- name: Install MongoDB 4.2 Version
+  apt:
+    name: mongodb-org
+    update_cache: yes
+
+- name: Ensure mongodb is running and and enabled to start automatically on reboots
+  systemd:
+    name: mongod
+    enabled: yes
+    state: started
+
+- name: install pip
+  apt:
+    name: python3-pip
+    state: latest
+
+- name: install pymongo
+  pip: name=pymongo state=latest
+
+#- name: Install python3-pip
+#  apt:
+#    name: "python3-pip"
+#    force_apt_get: True
+
+#- name: Install the latest pymongo package
+#  pip: 
+#    name: pymongo
+#    state: latest 
+#    use_mirrors: no

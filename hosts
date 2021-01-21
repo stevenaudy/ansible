@@ -1,0 +1,11 @@
+[mongo_servers]
+104.215.253.159 ansible_user=imsmongodbdev ansible_python_interpreter="/usr/bin/env python3"
+104.215.249.50 ansible_user=imsmongodbdev ansible_python_interpreter="/usr/bin/env python3"
+104.215.252.162 ansible_user=imsmongodbdev ansible_python_interpreter="/usr/bin/env python3"
+
+[mongo_main_server]
+104.215.253.159 ansible_user=imsmongodbdev ansible_python_interpreter="/usr/bin/env python3"
+
+[mongo_secondaries_servers]
+104.215.249.50 ansible_user=imsmongodbdev ansible_python_interpreter="/usr/bin/env python3"
+104.215.252.162 ansible_user=imsmongodbdev ansible_python_interpreter="/usr/bin/env python3"
