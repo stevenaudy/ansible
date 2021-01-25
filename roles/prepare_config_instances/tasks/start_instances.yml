@@ -1,4 +1,16 @@
 ---
+#- name: copy mongod.service to systemd
+#  copy:
+#    src: mongod.service
+#    dest: /lib/systemd/system/mongod.service
+#    owner: root
+#    group: root
+#    mode: 0644
+
+#- name: start mongodb service
+#  shell: sudo systemctl start mongod
+#  become: yes
+
 - name: Stop Instances
   shell: "mongod -f ~/mongodb/conf.d/mongod.{{ item.name }}.conf --shutdown"
   args:

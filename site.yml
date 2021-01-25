@@ -30,6 +30,16 @@
   roles:
     - replicaset
 
+- name: copy file mongodb service file
+  hosts:
+   - mongo_secondaries_servers
+  remote_user: "{{ os_user }}"
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  roles:
+   - mongodb_service
+
 # - name: Prepare Paths Instances in MongoDB
 #   hosts: 
 #     - mongo_servers

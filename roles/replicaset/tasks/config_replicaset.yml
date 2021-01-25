@@ -20,6 +20,31 @@
   shell: mongo --host "{{ item.name }}-rs/localhost:{{ item.port }}" -u "{{ mongo_admin_user }}" -p "{{ mongo_admin_pass }}" --authenticationDatabase "admin" < /tmp/replicaset_add_node.js
   with_items: "{{ mongo_databases }}"
 
+- name: create file mongod.service
+  copy:
+    src: mongod.service
+    dest: /lib/systemd/system/mongod.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: systemctl daemon reload
+  shell: systemctl daemon-reload
+  become: yes
+
+- name: Stop Instances
+  shell: "mongod -f ~/mongodb/conf.d/mongod.{{ item.name }}.conf --shutdown"
+  args:
+      executable: /bin/bash
+  with_items: "{{ mongo_databases }}"
+  register: command_result
+  become: no
+  ignore_errors: yes
+
+- name: mongodb service restart
+  shell: systemctl restart mongod
+  become: yes
+
   # ignore_errors: no
 
 
