@@ -1,6 +1,6 @@
-os_user: imsmongodbdev
-mongo_admin_user: admin
-mongo_admin_pass: adminims135*
+os_user: user in ubuntu
+mongo_admin_user: user for mongodb admin
+mongo_admin_pass: password for mongodb admin
 mongo_packages:
     - mongodb-org=4.2.11
     - mongodb-org-server=4.2.11
@@ -8,4 +8,4 @@ mongo_packages:
     - mongodb-org-mongos=4.2.11
     - mongodb-org-tools=4.2.11
 mongo_databases:
-    - {name: 'imsmongoclusterdev', port: 27017, cacheSizeGB: 1.0 }
+    - {name: 'db_name', port: 27017, cacheSizeGB: 1.0 }
